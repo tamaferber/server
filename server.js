@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const settingsRoute = require('./routes/settings');
+const fridgeRoute = require('./routes/fridge'); 
 require('./db');  //connection to Database
 
 const app = express();
@@ -10,7 +11,16 @@ const PORT = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/settings', settingsRoute);
+app.use('/api/fridge', fridgeRoute); 
+
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+});
+
+
+// testing-delete later
+app.use('/api/fridge', (req, res, next) => {
+  console.log(">>> incoming fridge POST:", req.body);
+  next();
 });
