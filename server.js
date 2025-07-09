@@ -17,10 +17,3 @@ app.use('/api/fridge', fridgeRoute);
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
-
-
-// testing-delete later
-app.use('/api/fridge', (req, res, next) => {
-  console.log(">>> incoming fridge POST:", req.body);
-  next();
-});
