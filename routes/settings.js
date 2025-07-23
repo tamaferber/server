@@ -1,17 +1,3 @@
-
-const mongoose = require('mongoose');
-
-const settingsSchema = new mongoose.Schema({
-  userId: String,
-  language: String,
-  theme: String,
-  coin: String,
-  notifications: String,
-  sound: String
-});
-
-module.exports = mongoose.model('Settings', settingsSchema);
-
 const express = require('express');
 const router = express.Router();
 const Settings = require('../models/Settings');
@@ -19,6 +5,10 @@ const Settings = require('../models/Settings');
 // POST – שמירה
 router.post('/', async (req, res) => {
   const { userId, ...settings } = req.body;
+
+  if (!userId) {
+    return res.status(400).json({ message: "Missing userId" });
+  }
 
   try {
     const updated = await Settings.findOneAndUpdate(
