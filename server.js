@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const settingsRoute = require('./routes/settings');
 const fridgeRoute = require('./routes/fridge'); 
 require('./db');  //connection to Database
 
