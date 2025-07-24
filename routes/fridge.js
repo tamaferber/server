@@ -2,6 +2,19 @@ const express = require('express');
 const router = express.Router();
 const FridgeItem = require('../models/fridgeItem');
 
+
+
+router.get('/', async (req, res) => {
+  try {
+    const items = await FridgeItem.find();
+    res.json(items);
+  } catch (err) {
+    console.error('Error fetching items:', err);
+    res.status(500).json({ message: 'Server error fetching items' });
+  }
+});
+
+
 router.post('/', async (req, res) => {
   try {
     const { items } = req.body;
