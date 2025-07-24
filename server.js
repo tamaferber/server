@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const settingsRoute = require('./routes/settings');
 const fridgeRoute = require('./routes/fridge'); 
 require('./db');  //connection to Database
 
@@ -10,7 +9,6 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/api/settings', settingsRoute);
 app.use('/api/fridge', fridgeRoute); 
 
 
