@@ -4,7 +4,6 @@ const FridgeItem = require('../models/fridgeItem');
 
 
 
-
 router.get('/', async (req, res) => {
   try {
     const items = await FridgeItem.find();
