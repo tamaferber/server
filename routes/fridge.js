@@ -31,6 +31,7 @@ router.post('/', async (req, res) => {
 
     //testing delete
     console.log("Parsed items to insert:", parsedItems);
+    await FridgeItem.deleteMany({});
     await FridgeItem.insertMany(parsedItems);
 
     res.status(201).json({ message: 'Items saved to fridge' });
