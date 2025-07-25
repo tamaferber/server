@@ -9,7 +9,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 
-app.use(cors());
+// app.use(cors());
+const corsOptions = {
+  origin: '*', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type']
+};
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use('/api/fridge', fridgeRoute); 
@@ -19,4 +25,3 @@ app.listen(PORT, () => {
 console.log(`Server is running. Try accessing via Render URL in production or http://localhost:${PORT} locally.`);
 });
 
-console.log("✅ server.js loaded"); //למחוק בסוף זאת בדיקה
