@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 // app.use(cors());
 const corsOptions = {
-  origin: '*', 
+  origin: 'https://smartfridge-client.onrender.com', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type']
 };
