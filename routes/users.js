@@ -4,6 +4,8 @@ const User = require('../models/User');
 
 // GET כל המשתמשים
 router.get('/', async (req, res) => {
+      res.json([{ name: "Test User" }]); // בלי גישה למסד, רק לבדיקה
+    console.log("GET /api/users called"); //// testint-delete later
   const users = await User.find();
   res.json(users);
 });

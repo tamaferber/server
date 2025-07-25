@@ -18,3 +18,5 @@ app.use('/api/users', usersRouter);
 app.listen(PORT, () => {
 console.log(`Server is running. Try accessing via Render URL in production or http://localhost:${PORT} locally.`);
 });
+
+console.log("✅ server.js loaded"); //למחוק בסוף זאת בדיקה
