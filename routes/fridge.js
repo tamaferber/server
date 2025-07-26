@@ -23,14 +23,22 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ message: 'Invalid items format' });
     }
 
-    // המרה של expirationDate ממחרוזת ל- Date
-    const parsedItems = items.map(item => ({
-      ...item,
-      expirationDate: new Date(item.expirationDate)
-    }));
+    // המרה של expconst parsedItems = items.map(item => {
+  const parsedItems = items.map(item => {
+  const expiration = new Date(item.expirationDate);
+  const quantity = Number(item.quantity);
+
+  return {
+    name: item.name,
+    quantity: isNaN(quantity) ? 1 : quantity,
+    expirationDate: isNaN(expiration.getTime()) ? new Date() : expiration
+  };
+});
+
 
     //testing delete
     console.log("Parsed items to insert:", parsedItems);
+    await FridgeItem.deleteMany({});
     await FridgeItem.insertMany(parsedItems);
 
     res.status(201).json({ message: 'Items saved to fridge' });
