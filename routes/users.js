@@ -2,19 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 
-// GET – כל המשתמשים
-// router.get('/', async (req, res) => {
-//   try {
-//     const users = await User.find();
-//     res.json(users);
-//   } catch (err) {
-//     console.error("❌ Failed to fetch users:", err);
-//     res.status(500).json({ error: "Failed to fetch users" });
-//   }
-// });
 
-
-// שליפה לפי אימייל – הוספה ל-router של /api/users
 router.get('/', async (req, res) => {
   const { email } = req.query;
 
@@ -43,7 +31,7 @@ router.post('/', async (req, res) => {
     await newUser.save();
     res.json(newUser);
   } catch (err) {
-    console.error("❌ Failed to save user:", err);
+    console.error(" Failed to save user:", err);
     res.status(500).json({ error: "Failed to save user" });
   }
 });
@@ -54,7 +42,7 @@ router.put('/:id', async (req, res) => {
     const updated = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(updated);
   } catch (err) {
-    console.error("❌ Failed to update user:", err);
+    console.error(" Failed to update user:", err);
     res.status(500).json({ error: "Failed to update user" });
   }
 });
@@ -65,9 +53,24 @@ router.delete('/:id', async (req, res) => {
     await User.findByIdAndDelete(req.params.id);
     res.sendStatus(204);
   } catch (err) {
-    console.error("❌ Failed to delete user:", err);
+    console.error(" Failed to delete user:", err);
     res.status(500).json({ error: "Failed to delete user" });
   }
 });
+
+// בדיקת התחברות של אדמין
+router.post('/admin-login', (req, res) => {
+  const { email, password } = req.body;
+
+  const ADMIN_EMAIL = "admin@gmail.com";
+  const ADMIN_PASSWORD = "admin123";
+
+  if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+    return res.status(200).json({ isAdmin: true });
+  } else {
+    return res.status(401).json({ isAdmin: false, message: "Invalid credentials" });
+  }
+});
+
 
 module.exports = router;
