@@ -2,18 +2,38 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 
+// GET – כל המשתמשים
+// router.get('/', async (req, res) => {
+//   try {
+//     const users = await User.find();
+//     res.json(users);
+//   } catch (err) {
+//     console.error("❌ Failed to fetch users:", err);
+//     res.status(500).json({ error: "Failed to fetch users" });
+//   }
+// });
 
+
+// שליפה לפי אימייל – הוספה ל-router של /api/users
 router.get('/', async (req, res) => {
   const { email } = req.query;
 
-  if (email) {
-    const users = await User.find({ email });
-    return res.json(users);
+  try {
+    if (email) {
+      // שליפה לפי אימייל
+      const existing = await User.find({ email });
+      return res.json(existing);
+    } else {
+      // שליפה של כל המשתמשים
+      const allUsers = await User.find({});
+      return res.json(allUsers);
+    }
+  } catch (err) {
+    console.error("Error fetching users:", err);
+    res.status(500).json({ message: "Failed to fetch users" });
   }
-
-  const users = await User.find();
-  res.json(users);
 });
+
 
 
 // POST – הוספת משתמש
