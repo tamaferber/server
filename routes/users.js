@@ -2,16 +2,6 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 
-// GET – כל המשתמשים
-// router.get('/', async (req, res) => {
-//   try {
-//     const users = await User.find();
-//     res.json(users);
-//   } catch (err) {
-//     console.error("❌ Failed to fetch users:", err);
-//     res.status(500).json({ error: "Failed to fetch users" });
-//   }
-// });
 
 router.get('/', async (req, res) => {
   const { email } = req.query;
