@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const fridgeRoute = require('./routes/fridge'); 
 const usersRouter = require('./routes/users'); 
 const adminRouter = require('./routes/admin'); 
+const cartRouter = require('./routes/cart');
 
 require('./db');  //connection to Database
 
@@ -23,6 +24,8 @@ app.use(bodyParser.json());
 app.use('/api/fridge', fridgeRoute); 
 app.use('/api/users', usersRouter);  
 app.use('/api/admin', adminRouter);
+app.use('/api/cart', cartRouter);
+
 
 
 app.listen(PORT, () => {
