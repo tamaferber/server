@@ -14,11 +14,14 @@ const PORT = process.env.PORT || 3000;
 
 // app.use(cors());
 const corsOptions = {
-  origin: 'https://smartfridge-client.onrender.com', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type']
+  origin: 'https://smartfridge-client.onrender.com',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 204
 };
+
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use('/api/fridge', fridgeRoute); 
