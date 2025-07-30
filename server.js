@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use('/api/fridge', fridgeRoute); 
 app.use('/api/users', usersRouter);  
 app.use('/api/admin', adminRouter);
-// app.use('/api/cart', cartRouter);
+app.use('/api/cart', cartRouter);
 
 
 
