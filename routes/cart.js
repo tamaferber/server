@@ -25,19 +25,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// // GET – שליפת עגלה לפי מייל
-// router.get('/:email', async (req, res) => {
-//   const { email } = req.params;
-
-//   try {
-//     const userCart = await CartItem.find({ email });
-//     res.json(userCart);
-//   } catch (err) {
-//     console.error('Error fetching cart:', err);
-//     res.status(500).json({ message: 'Failed to fetch cart' });
-//   }
-// });
-
 // GET – שליפת עגלה לפי מייל (מפרמטר query)
 router.get('/', async (req, res) => {
   const { email } = req.query;
